@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="mainKongFlatButton">
+        <item name="colorNormal">@color/translucent</item>
+        <item name="colorNormalText">@color/mainColor</item>
+        <item name="colorPressed">@color/gray</item>
+        <item name="colorPressedText">@color/gray_text</item>
+        <item name="cornerRadius">@dimen/dp_6</item>
+        <item name="strokeColor">@color/mainColor</item>
+        <item name="strokeWidth">@dimen/dp_1</item>
+    </style>
+</resources>

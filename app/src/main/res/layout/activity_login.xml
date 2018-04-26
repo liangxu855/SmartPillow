@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fb="http://schemas.android.com/apk/res-auto">
+    <com.example.administrator.smartpillow.widget.button.FlatButton
+    android:id="@+id/verification"
+    android:layout_width="@dimen/dp_100"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_25"
+    android:gravity="center"
+    android:padding="@dimen/dp_8"
+    android:text="获取验证码"
+    android:textColor="@color/white"
+    android:textSize="@dimen/text_xxm"
+    fb:colorNormal="@color/mainColor"
+    fb:colorPressed="@color/gray_ee"
+    fb:cornerRadius="@dimen/dp_5"
+    fb:strokeColor="@color/black"/>
+</android.support.constraint.ConstraintLayout>
