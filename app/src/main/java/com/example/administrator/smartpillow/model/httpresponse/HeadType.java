@@ -11,7 +11,7 @@ package com.example.administrator.smartpillow.model.httpresponse;
  */
 
 public enum HeadType {
-    NULL_HEAD(0, "没有头部"), LOGIN_HEAD(2, "两个头部"), UNREGISTERED_HEAD(3, "三个头部");
+    NULL_HEAD(0, "没有头部");
 
     private int key;
     private String value;

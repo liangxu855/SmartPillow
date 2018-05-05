@@ -15,7 +15,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import rx.Subscriber;
 
-import static com.example.administrator.smartpillow.model.UserInfo.userData;
+
 
 
 /**
@@ -75,16 +75,6 @@ public class HttpSubscription<T> extends Subscriber<ResponseBody> {
                         if (res instanceof BaseHttpResponse) {
                             ((BaseHttpResponse) res).content = str;
                             if (((BaseHttpResponse) res).getStatusCodeMsg().equals(HttpCode.FAIL_C.getValuse())) {
-                                userData.setLogin(false);
-                                userData.save(userData);
-//                                //跳转到登录页
-//                                if (callBack.baseActivity != null) {
-//                                    LoginActivity.startUI(callBack.baseActivity);
-//                                }
-//                                if (callBack.basePresenter != null && callBack.basePresenter.mvpView instanceof Activity) {
-//                                    LoginActivity.startUI((Activity) callBack.basePresenter.mvpView, true);
-//                                }
-
                                 ToastUtils.getToastLong("请重新登录");
                             }
                         }

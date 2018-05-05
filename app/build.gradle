@@ -36,4 +36,6 @@ dependencies {
     implementation files('libs/lite-orm-1.9.2.jar')
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     implementation 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:1.2.0'
+    implementation 'com.android.support:support-v4:27.1.1'
 }

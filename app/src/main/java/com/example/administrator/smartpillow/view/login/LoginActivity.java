@@ -31,7 +31,7 @@ public class LoginActivity extends BaseMvpActivity<IloginView,LoginPresenter> im
 
     @Override
     public void initView() {
-
+        presenter.register("这是mobile","这是code","这是密码","这是旧密码",12306);
     }
 
     @Override
@@ -52,7 +52,12 @@ public class LoginActivity extends BaseMvpActivity<IloginView,LoginPresenter> im
     }
 
     @Override
-    public void boundWX(boolean isSucceed) {
+    public void bindMobile() {
+
+    }
+
+    @Override
+    public void register() {
 
     }
 

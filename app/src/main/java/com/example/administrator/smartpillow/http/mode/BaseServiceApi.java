@@ -4,6 +4,7 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -46,6 +47,11 @@ public interface BaseServiceApi {
             @Path(value = "path", encoded = true) String path,
             @FieldMap Map<String, String> maps
     );
+
+    @POST("{path}")
+    Observable<ResponseBody> executePostJson(
+            @Path(value = "path", encoded = true) String path,
+            @Body RequestBody requestBody);
     /**
      * **
      * 创建时间: 2016/9/24 16:14
@@ -79,8 +85,10 @@ public interface BaseServiceApi {
             @PartMap() Map<String, RequestBody> maps);
 
 
+
     @Streaming
     @GET
     Observable<ResponseBody> downloadFile(@Url String fileUrl);
+
 
 }

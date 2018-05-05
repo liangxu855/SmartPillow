@@ -1,8 +1,6 @@
 package com.example.administrator.smartpillow.http.httpquest;
 
 
-import com.example.administrator.smartpillow.model.httpresponse.HeadType;
-
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
@@ -11,8 +9,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static android.R.attr.type;
-import static com.example.administrator.smartpillow.model.UserInfo.userData;
 
 
 /**
@@ -37,56 +33,14 @@ public class MarvelSigningInterceptor implements Interceptor {
                 .host(oldRequest.url().host());
 
         String ac = oldRequest.url().encodedQuery();
-
-
-//        boolean isAddPublic = false;
-//        for (String action : noAction) {
-//            if (ac.contains(action)) {
-//                isAddPublic = true;
-//            }
-//        }
         RequestBody requestBody = oldRequest.body();
-//        if (isAddPublic) {
-//
-//
-//
-//        }
 
 
         // 新的请求
-        Request newRequest ;
-
-        if (type == HeadType.LOGIN_HEAD.getKey()) {
-            newRequest = chain.request().newBuilder()
-                    .addHeader("code", String.valueOf(userData.getCode()))
-                    .addHeader("token", userData.getToken())
+        Request newRequest = chain.request().newBuilder()
                     .method(oldRequest.method(), requestBody)
                     .url(authorizedUrlBuilder.build())
                     .build();
-        } else if (type == HeadType.UNREGISTERED_HEAD.getKey()) {
-            newRequest = chain.request().newBuilder()
-                    .addHeader("mac", userData.getMac())
-                    .addHeader("ticket", userData.getTicket())
-                    .addHeader("secret", userData.getSecret())
-                    .method(oldRequest.method(), requestBody)
-                    .url(authorizedUrlBuilder.build())
-                    .build();
-        } else {
-            newRequest = chain.request().newBuilder()
-                    .method(oldRequest.method(), requestBody)
-                    .url(authorizedUrlBuilder.build())
-                    .build();
-        }
-
-
-
-
-
-
-
-
-
-
 
         return chain.proceed(newRequest);
     }

@@ -9,6 +9,7 @@ import com.example.administrator.smartpillow.utils.other.LogUtils;
 
 import java.util.Map;
 
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import rx.Observable;
 import rx.Subscriber;
@@ -191,6 +192,14 @@ public class BaseHttpRequest {
             LogUtils.e("params:"+key+"->"+param.getStringMap().get(key)+"\n");
         }
         return toSubscribe(HttpManager.getInstance(subscriber.mHeadType,path).baseServiceApi.executePost(path, param.getStringMap()),
+                new HttpSubscription<T>(subscriber));
+    }
+    public static <T> Subscription executePost(HttpCallBack<T> subscriber,
+                                               String path,
+                                               String json) {
+        LogUtils.e("requestUrl:"+"->"+path+"\n");
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),json);
+        return toSubscribe(HttpManager.getInstance(subscriber.mHeadType,path).baseServiceApi.executePostJson(path,requestBody),
                 new HttpSubscription<T>(subscriber));
     }
 

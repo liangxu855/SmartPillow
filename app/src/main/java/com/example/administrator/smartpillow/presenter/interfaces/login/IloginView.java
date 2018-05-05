@@ -22,9 +22,12 @@ public interface IloginView extends BaseView {
     void login(boolean isSucceed);
 
     /**
-     * 绑定微信号
-     *
-     * @param
+     * 绑定手机号
      */
-    void boundWX(boolean isSucceed);
+    void bindMobile();
+
+    /**
+     * 注册
+     */
+    void register();
 }

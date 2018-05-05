@@ -12,7 +12,6 @@ import com.example.administrator.smartpillow.http.listener.StatusChangListener;
 import com.example.administrator.smartpillow.model.httpresponse.BaseHttpResponse;
 import com.example.administrator.smartpillow.model.httpresponse.HeadType;
 import com.example.administrator.smartpillow.utils.other.LogUtils;
-import com.example.administrator.smartpillow.utils.ui.ToastUtils;
 import com.example.administrator.smartpillow.widget.empty_layout.ContextData;
 import com.example.administrator.smartpillow.widget.empty_layout.LoadingAndRetryManager;
 
@@ -22,8 +21,6 @@ import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
 import retrofit2.adapter.rxjava.HttpException;
-
-import static com.example.administrator.smartpillow.model.UserInfo.userData;
 
 
 public abstract class HttpCallBack<ResultType> {
@@ -253,21 +250,6 @@ public abstract class HttpCallBack<ResultType> {
             isCancelable = cancelable;
             return this;
         }
-
-        /**
-         * 注释说明:指定头部类型
-         * 阳：2017/3/14-10:03
-         * {@link HeadType}
-         */
-        public Builder setHttpHead(HeadType type) {
-            mHeadType = type.getKey();
-            if (type.getKey() == HeadType.LOGIN_HEAD.getKey() && !userData.isLogin()) {
-                ToastUtils.getToastLong("未登录，请先登录");
-                mHeadType = HeadType.NULL_HEAD.getKey();
-            }
-            return this;
-        }
-
 
         /**
          * 下拉刷新的监听

@@ -9,7 +9,7 @@ public class ApiConstants {
     public static boolean ISNOT_OFFICIAL=false;
 
     //wisePillow-正式地址/测试地址
-    public static final String BASE_HOST = ISNOT_OFFICIAL ? "http://106.14.76.4/wisePillow" : "http://106.14.76.4/wisePillow";
+    public static final String BASE_HOST = ISNOT_OFFICIAL ? "http://106.14.76.4/wisePillow/" : "http://106.14.76.4/wisePillow/";
 
 
     /**

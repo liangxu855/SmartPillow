@@ -6,7 +6,6 @@ import com.example.administrator.smartpillow.code.MyApplication;
 import com.example.administrator.smartpillow.http.GsonHelper;
 import com.example.administrator.smartpillow.http.mode.BaseServiceApi;
 import com.example.administrator.smartpillow.http.mode.ServiceApi;
-import com.example.administrator.smartpillow.model.httpresponse.HeadType;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +20,6 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import static com.example.administrator.smartpillow.model.UserInfo.userData;
 
 
 /**
@@ -102,21 +99,9 @@ public class HttpManager {
                 if (hashMap.get(str) != null) {
                     type = hashMap.get(str).intValue();
                 }
-                if (type == HeadType.LOGIN_HEAD.getKey()) {
-                    request = chain.request().newBuilder()
-                            .addHeader("code", String.valueOf(userData.getCode()))
-                            .addHeader("token", userData.getToken())
-                            .build();
-                } else if (type == HeadType.UNREGISTERED_HEAD.getKey()) {
-                    request = chain.request().newBuilder()
-                            .addHeader("mac", userData.getMac())
-                            .addHeader("ticket", userData.getTicket())
-                            .addHeader("secret", userData.getSecret())
-                            .build();
-                } else {
-                    request = chain.request().newBuilder()
-                            .build();
-                }
+                request = chain.request().newBuilder()
+                        .build();
+
                 return chain.proceed(request);
             }
         }).build();
