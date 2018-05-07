@@ -13,5 +13,12 @@
         <attr name="strokeColor" format="color" />
         <attr name="strokeWidth" format="dimension" />
         <attr name="cornerRadius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ICircleImageView">
+        <attr name="ic_border_width" format="dimension" />
+        <attr name="ic_border_color" format="color" />
     </declare-styleable>
 </resources>

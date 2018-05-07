@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.administrator.smartpillow.R;
 import com.example.administrator.smartpillow.code.base.view.iview.IActivityAndFragment;
@@ -30,7 +33,7 @@ import com.example.administrator.smartpillow.widget.empty_layout.OnRetryClickLis
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public abstract class  BaseActivity extends AppCompatActivity implements IActivityAndFragment {
+public abstract class BaseActivity extends AppCompatActivity implements IActivityAndFragment {
     /**
      * **
      * 创建时间: 2016/9/22 11:14
@@ -63,22 +66,35 @@ public abstract class  BaseActivity extends AppCompatActivity implements IActivi
 
     private LoadDialog loadDialog;
     public Activity mActivity;
+    @Nullable
     protected SupperToolBar toolbar;
-
+    protected TextView mToolbarTitle;
+    protected TextView mToolbarSubTitle;
+    protected ImageView ivGoBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActivity=this;
+        mActivity = this;
         setTranslucentStatus(getStatusBarEnable(), getStatusBarResource());
         //初始化布局文件
         setContentView(getContentView());
         //初始化意图
         parseIntent(getIntent());
-
+        toolbar = findViewById(R.id.toolbar);
+        mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        mToolbarSubTitle = (TextView) findViewById(R.id.toolbar_subtitle);
+        ivGoBack = (ImageView) findViewById(R.id.iv_go_back);
+        if (toolbar != null) {
+            //将Toolbar显示到界面
+            setSupportActionBar(toolbar);
+            //设置默认的标题不显示
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         //初始化view
         initView();
 
     }
+
 
     /**
      * **
@@ -175,7 +191,6 @@ public abstract class  BaseActivity extends AppCompatActivity implements IActivi
     public LoadingAndRetryManager getLoadingAndRetryManager() {
         return loadingAndRetryManager;
     }
-
 
 
     private void setTranslucentStatus(boolean on, int color) {

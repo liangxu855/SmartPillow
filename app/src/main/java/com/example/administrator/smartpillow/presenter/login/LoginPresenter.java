@@ -6,7 +6,7 @@ import com.example.administrator.smartpillow.http.httpquest.HttpCallBack;
 import com.example.administrator.smartpillow.http.mode.HttpRequest;
 import com.example.administrator.smartpillow.model.httpresponse.HttpResult;
 import com.example.administrator.smartpillow.model.login.LoginData;
-import com.example.administrator.smartpillow.presenter.interfaces.login.IloginView;
+import com.example.administrator.smartpillow.presenter.interfaces.login.LoginInterface;
 import com.example.administrator.smartpillow.utils.other.LogUtils;
 
 import org.json.JSONException;
@@ -16,7 +16,7 @@ import org.json.JSONObject;
  * 说明: 登录的P类
  */
 
-public class LoginPresenter extends BasePresenter<IloginView> {
+public class LoginPresenter extends BasePresenter<LoginInterface.IloginView> {
     /**
      * 注册  接口
      * account/register

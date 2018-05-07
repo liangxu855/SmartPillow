@@ -5,12 +5,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.administrator.smartpillow.R;
 import com.example.administrator.smartpillow.code.base.view.activity.BaseActivity;
 import com.example.administrator.smartpillow.utils.ui.DrawableUtils;
+import com.example.administrator.smartpillow.utils.ui.ToastUtils;
 import com.example.administrator.smartpillow.view.common.factory.FragmentFactory;
 import com.example.administrator.smartpillow.widget.viewpager.CustomViewPager;
 
@@ -20,6 +22,7 @@ public class MainActivity extends BaseActivity {
     BottomNavigationBar bottomNavigationBar;
 
     private Fragment mCurrentFragment;
+    private static final int fragmentCount = 4;
     @Override
     public int getContentView() {
         return R.layout.activtiy_main;
@@ -29,10 +32,36 @@ public class MainActivity extends BaseActivity {
     public void initView() {
         baseMentViewPager = findViewById(R.id.BaseMentViewPager);
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
-        NavigationBar();
+        mToolbarTitle.setText(getResources().getText(R.string.app_name));
+        mToolbarSubTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ToastUtils.getToastShort("点击了mToolbarSubTitle");
+            }
+        });
+        navigationBar();
+
+    }
+    private void initToolbar(int position) {
+        mToolbarSubTitle.setVisibility(View.INVISIBLE);
+        switch (position){
+            case 0:
+                mToolbarTitle.setText(getResources().getText(R.string.app_name));
+                break;
+            case 1:
+                mToolbarTitle.setText(getResources().getText(R.string.chat));
+                mToolbarSubTitle.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                mToolbarTitle.setText(getResources().getText(R.string.community));
+                break;
+            case 3:
+                mToolbarTitle.setText(getResources().getText(R.string.personal));
+                break;
+        }
     }
 
-    private void NavigationBar() {
+    private void navigationBar() {
         baseMentViewPager.setAdapter(new TabPagerAdapter(getSupportFragmentManager() ));
         baseMentViewPager.setOffscreenPageLimit(0);//设置ViewPager的缓存界面数,默认缓存为2
         baseMentViewPager.setScanScroll(true);
@@ -46,6 +75,7 @@ public class MainActivity extends BaseActivity {
             public void onPageSelected(int position) {
                 //当前选中的页面的Position
                 bottomNavigationBar.selectTab(position);
+                initToolbar(position);
             }
 
             @Override
@@ -118,17 +148,14 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return fragmentCount;
         }
 
-    }
-    @Override
-    public int getStatusBarPaddingTop() {
-        return 0;
     }
 
     @Override
     public int getStatusBarResource() {
         return R.color.translucent;
     }
+
 }
